@@ -16,6 +16,7 @@ export default class CatchGame {
             },
         ];
         this.pieces = [];
+        this.updateHandler = null;
         this.addPiece();
         this.addPiece();
         this.addPiece();
@@ -27,5 +28,6 @@ export default class CatchGame {
             y: Math.random() * 100,
         }
         this.pieces.push(piece);
+        if (this.updateHandler) this.updateHandler(this);
     }
 }

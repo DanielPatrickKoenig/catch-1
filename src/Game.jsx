@@ -2,7 +2,7 @@ import './Game.css';
 import Hero from './Hero';
 import { useState, useRef } from 'react';
 
-const Game = () => {
+const Game = (props) => {
     const [heroPosition, setHeroPosition] = useState({
         x: 50,
         y: 50,
@@ -27,6 +27,7 @@ const Game = () => {
             >
                 <p>Hello</p>
             </Hero>
+            {props.game.pieces.map(item => (<div>{item.type.type}</div>))}
         </div>
     );
 };
