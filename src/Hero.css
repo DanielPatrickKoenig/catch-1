@@ -1,0 +1,11 @@
+.hero {
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+.hero .hero-content {
+    width: 5dvh;
+    height: 5dvh;
+    transform: translate(-50%, -50%);
+    background-color: green;
+}
