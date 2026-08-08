@@ -1,6 +1,7 @@
 import './Game.css';
 import Hero from './Hero';
 import { useState, useRef } from 'react';
+import FallingObject from './FallingObject';
 
 const Game = (props) => {
     const [heroPosition, setHeroPosition] = useState({
@@ -27,7 +28,7 @@ const Game = (props) => {
             >
                 <p>Hello</p>
             </Hero>
-            {props.game.pieces.map(item => (<div>{item.type.type}</div>))}
+            {props.game.pieces.map(item => (<FallingObject x={item.x} y={item.y}>{item.type.type}</FallingObject>))}
         </div>
     );
 };
