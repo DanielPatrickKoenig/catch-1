@@ -7,7 +7,7 @@ const Hero = (props) => {
         style={{ left: `${props.x}%`, top: `${props.y - 6}%` }}
     >
         <div className="hero-content">
-            { props.childern }
+            { props.children }
         </div>
     </div>
   );
