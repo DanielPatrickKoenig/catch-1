@@ -26,7 +26,7 @@ export default class CatchGame {
         const piece = new Catchable({
             type: this.types[Math.floor(Math.random() * this.types.length)],
             x: Math.random() * 100,
-            y: Math.random() * 100,
+            y: -10,
             updateHandler: () => this.updateHandler(this),
         });
         this.pieces.push(piece);
