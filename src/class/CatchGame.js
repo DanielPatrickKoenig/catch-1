@@ -1,6 +1,9 @@
 import Catchable from "./Catchable";
 export default class CatchGame {
     constructor () {
+        this.playing = false;
+        this.baseSpawnTime = 1000;
+        this.spawnRange = 2000;
         this.types = [
             {
                 type: 'a',
@@ -18,9 +21,6 @@ export default class CatchGame {
         ];
         this.pieces = [];
         this.updateHandler = null;
-        this.addPiece();
-        this.addPiece();
-        this.addPiece();
     }
     addPiece () {
         const piece = new Catchable({
@@ -31,5 +31,15 @@ export default class CatchGame {
         });
         this.pieces.push(piece);
         if (this.updateHandler) this.updateHandler(this);
+    }
+    async startGame () {
+        this.playing = true;
+        while (this.playing) {
+            await new Promise(resolve => setTimeout(resolve, (Math.random() * this.spawnRange) + this.baseSpawnTime));
+            this.addPiece();
+        }
+    }
+    stopGame () {
+        this.playing = false;
     }
 }

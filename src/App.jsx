@@ -16,7 +16,7 @@ const App = () => {
     <div className="content">
       
       <Game game={game} pieces={pieces} />
-      <button onClick={() => {game.addPiece()}}>Click</button>
+      <button onClick={() => {game.startGame()}}>StartGame</button>
     </div>
   );
 };
