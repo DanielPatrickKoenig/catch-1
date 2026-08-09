@@ -8,6 +8,7 @@ export default class Catchable {
         this.type = type;
         this.baseDuration = 5;
         this.durationRange = 3;
+        this.redeemed = false;
         this.updateHandler = updateHandler;
         this.completeHandler = completeHandler;
         this.move();

@@ -26,13 +26,16 @@ const Game = (props) => {
             onMouseMove={moveHandler}
             onTouchMove={moveHandler}
         >
+            <label>
+                Points: {props.game.points}
+            </label>
             <Hero
                 x={heroPosition.x}
                 y={heroPosition.y}
             >
                 <p>Hello</p>
             </Hero>
-            {props.game.pieces.map(item => (<FallingObject x={item.x} y={item.y}>{item.type.type}</FallingObject>))}
+            {props.game.pieces.map(item => (<FallingObject x={item.x} y={item.y} type={item.type.type}>{item.type.type}</FallingObject>))}
         </div>
     );
 };

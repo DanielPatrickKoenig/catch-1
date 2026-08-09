@@ -23,6 +23,7 @@ export default class CatchGame {
         this.pieces = [];
         this.updateHandler = null;
         this.heroPosition = { x: 50, y: 50 };
+        this.points = 0;
     }
     addPiece () {
         const piece = new Catchable({
@@ -57,6 +58,10 @@ export default class CatchGame {
     }
     checkForCollisions(piece) {
         if (jstrig.distance(this.heroPosition, piece) < 5) {
+            if (!piece.redeemed) {
+                this.points += piece.type.value;
+                piece.redeemed = true;
+            }
             this.removePiece(piece.id);
         }
     }
