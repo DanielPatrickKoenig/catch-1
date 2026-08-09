@@ -4,4 +4,10 @@ function generateUUID () {
         .join('-');
 }
 
-export { generateUUID };
+function processPointerEvent(e){
+    return e.touches && e.touches.length
+        ? { x: e.touches[0].clientX, y: e.touches[0].clientY }
+        : { x: e.clientX, y: e.clientY };
+}
+
+export { generateUUID, processPointerEvent };
