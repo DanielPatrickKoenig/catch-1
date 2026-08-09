@@ -1,3 +1,4 @@
+import Catchable from "./Catchable";
 export default class CatchGame {
     constructor () {
         this.types = [
@@ -22,11 +23,12 @@ export default class CatchGame {
         this.addPiece();
     }
     addPiece () {
-        const piece = {
+        const piece = new Catchable({
             type: this.types[Math.floor(Math.random() * this.types.length)],
             x: Math.random() * 100,
             y: Math.random() * 100,
-        }
+            updateHandler: () => this.updateHandler(this),
+        });
         this.pieces.push(piece);
         if (this.updateHandler) this.updateHandler(this);
     }
