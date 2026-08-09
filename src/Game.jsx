@@ -2,6 +2,7 @@ import './Game.css';
 import Hero from './Hero';
 import { useState, useRef } from 'react';
 import FallingObject from './FallingObject';
+import { processPointerEvent } from './utils';
 
 const Game = (props) => {
     const [heroPosition, setHeroPosition] = useState({
@@ -10,10 +11,11 @@ const Game = (props) => {
     });
     const gameRef = useRef(null);
     const moveHandler = (e) => {
+        const point = processPointerEvent(e);
         const bounds = gameRef.current.getBoundingClientRect();
         setHeroPosition({
-            x: ((e.clientX - bounds.left) / bounds.width) * 100,
-            y: (e.clientY / bounds.height) * 100,
+            x: ((point.x - bounds.left) / bounds.width) * 100,
+            y: ((point.y / bounds.height) * 100) - 12,
         });
     }
     return (
@@ -21,6 +23,7 @@ const Game = (props) => {
             ref={gameRef}
             className="game"
             onMouseMove={moveHandler}
+            onTouchMove={moveHandler}
         >
             <Hero
                 x={heroPosition.x}
