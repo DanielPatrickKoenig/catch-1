@@ -17,6 +17,7 @@ const Game = (props) => {
             x: ((point.x - bounds.left) / bounds.width) * 100,
             y: ((point.y / bounds.height) * 100) - 12,
         });
+        props.game.setHeroPosition(heroPosition);
     }
     return (
         <div

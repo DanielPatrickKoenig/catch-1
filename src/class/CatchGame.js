@@ -1,4 +1,5 @@
 import Catchable from "./Catchable";
+import jstrig from "jstrig";
 export default class CatchGame {
     constructor () {
         this.playing = false;
@@ -21,13 +22,17 @@ export default class CatchGame {
         ];
         this.pieces = [];
         this.updateHandler = null;
+        this.heroPosition = { x: 50, y: 50 };
     }
     addPiece () {
         const piece = new Catchable({
             type: this.types[Math.floor(Math.random() * this.types.length)],
             x: Math.random() * 100,
             y: -10,
-            updateHandler: () => this.updateHandler(this),
+            updateHandler: (item) => {
+                this.checkForCollisions(item);
+                this.updateHandler(this);
+            },
             completeHandler: (item) => this.removePiece(item.id),
         });
         this.pieces.push(piece);
@@ -46,5 +51,13 @@ export default class CatchGame {
     }
     stopGame () {
         this.playing = false;
+    }
+    setHeroPosition (position) {
+        this.heroPosition = position;
+    }
+    checkForCollisions(piece) {
+        if (jstrig.distance(this.heroPosition, piece) < 5) {
+            this.removePiece(piece.id);
+        }
     }
 }
