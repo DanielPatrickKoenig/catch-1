@@ -28,6 +28,7 @@ export default class CatchGame {
             x: Math.random() * 100,
             y: -10,
             updateHandler: () => this.updateHandler(this),
+            completeHandler: (item) => this.removePiece(item.id),
         });
         this.pieces.push(piece);
         if (this.updateHandler) this.updateHandler(this);
@@ -38,6 +39,10 @@ export default class CatchGame {
             await new Promise(resolve => setTimeout(resolve, (Math.random() * this.spawnRange) + this.baseSpawnTime));
             this.addPiece();
         }
+    }
+    removePiece (id) {
+        this.pieces = this.pieces.filter(item => item.id !== id);
+        if (this.updateHandler) this.updateHandler(this);
     }
     stopGame () {
         this.playing = false;
