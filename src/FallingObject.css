@@ -9,3 +9,13 @@
     transform: translate(-50%, -50%);
     background-color: blue;
 }
+
+.falling-object-a .falling-object-content {
+    background-color: yellow;
+}
+.falling-object-b .falling-object-content {
+    background-color: pink;
+}
+.falling-object-c .falling-object-content {
+    background-color: black;
+}
