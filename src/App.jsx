@@ -11,7 +11,11 @@ const App = () => {
     setPieces(game.pieces);
     forceUpdate();
   }
+  const onGameOver = (_game) => {
+    console.log('game over', _game.points);
+  }
   game.updateHandler = onGameUpdate;
+  game.gameOverHandler = onGameOver;
   return (
     <div className="content">
       

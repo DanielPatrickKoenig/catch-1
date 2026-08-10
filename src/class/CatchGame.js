@@ -22,6 +22,7 @@ export default class CatchGame {
         ];
         this.pieces = [];
         this.updateHandler = null;
+        this.gameOverHandler = null;
         this.heroPosition = { x: 50, y: 50 };
         this.points = 0;
     }
@@ -61,8 +62,16 @@ export default class CatchGame {
             if (!piece.redeemed) {
                 this.points += piece.type.value;
                 piece.redeemed = true;
+                this.checkGameStatus(piece);
             }
             this.removePiece(piece.id);
+        }
+    }
+    async checkGameStatus (piece) {
+        if (piece.type.gameEvent === 'gameOver') {
+            this.playing = false;
+            await new Promise(resolve => setTimeout(resolve, 3000));
+            if (this.gameOverHandler) this.gameOverHandler(this);
         }
     }
 }
