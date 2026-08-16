@@ -70,8 +70,8 @@ export default class CatchGame {
     async checkGameStatus (piece) {
         if (piece.type.gameEvent === 'gameOver') {
             this.playing = false;
-            await new Promise(resolve => setTimeout(resolve, 3000));
             if (this.gameOverHandler) this.gameOverHandler(this);
+            await new Promise(resolve => setTimeout(resolve, 3000));
         }
     }
     restartGame () {
