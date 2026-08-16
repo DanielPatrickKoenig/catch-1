@@ -74,4 +74,9 @@ export default class CatchGame {
             if (this.gameOverHandler) this.gameOverHandler(this);
         }
     }
+    restartGame () {
+        this.pieces = [];
+        this.points = 0;
+        this.startGame();
+    }
 }

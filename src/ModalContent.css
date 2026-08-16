@@ -1,0 +1,16 @@
+.modal-content {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content .modal-content-body {
+    max-height: 60dvh;
+    width: 30dvh;
+    padding: 5dvh;
+    text-align: center;
+    background-color: #dddddd;
+}
