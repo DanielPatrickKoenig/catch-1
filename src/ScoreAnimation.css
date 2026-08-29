@@ -1,0 +1,21 @@
+.score-animation {
+    color: #ffffff;
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.score-animation .content {
+    width: cRems(3dvh);
+    height: cRemx(3dvh);
+    background-color: brown;
+    transform: translate(-50%, -50%);
+}
+
+.score-animation-positive {
+    color: yellow;
+}
+
+.score-animation-negative {
+    color: pink;
+}

@@ -2,6 +2,7 @@ import './Game.css';
 import Hero from './Hero';
 import { useState, useRef } from 'react';
 import FallingObject from './FallingObject';
+import ScoreAnimation from './ScoreAnimation';
 import { processPointerEvent } from './utils';
 
 const Game = (props) => {
@@ -36,6 +37,10 @@ const Game = (props) => {
                 <p>Hello</p>
             </Hero>
             {props.game.pieces.map(item => (<FallingObject x={item.x} y={item.y} type={item.type.type}>{item.type.type}</FallingObject>))}
+
+            {props.game.scoreGraphics.map(item => (<ScoreAnimation x={item.x} y={item.y} points={item.type.value} />))}
+
+            {props.game.scoreGraphics.map(item => (<p x={item.x} y={item.y} points={item.type.value}>{item.y}</p>))}
         </div>
     );
 };

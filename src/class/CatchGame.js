@@ -1,4 +1,5 @@
 import Catchable from "./Catchable";
+import ScoreGraphic from "./ScoreGraphic";
 import jstrig from "jstrig";
 export default class CatchGame {
     constructor () {
@@ -25,6 +26,7 @@ export default class CatchGame {
         this.gameOverHandler = null;
         this.heroPosition = { x: 50, y: 50 };
         this.points = 0;
+        this.scoreGraphics = [];
     }
     addPiece () {
         const piece = new Catchable({
@@ -40,6 +42,18 @@ export default class CatchGame {
         this.pieces.push(piece);
         if (this.updateHandler) this.updateHandler(this);
     }
+    addScoreGraphic (piece) {
+        const scoreGraphic = new ScoreGraphic({
+            catchable: piece,
+            updateHandler: () => {
+                this.updateHandler(this);
+            },
+            completeHandler: (item) => this.removeScoreGraphic(item.id),
+        });
+
+        this.scoreGraphics.push(scoreGraphic);
+
+    }
     async startGame () {
         this.playing = true;
         while (this.playing) {
@@ -49,6 +63,10 @@ export default class CatchGame {
     }
     removePiece (id) {
         this.pieces = this.pieces.filter(item => item.id !== id);
+        if (this.updateHandler) this.updateHandler(this);
+    }
+    removeScoreGraphic (id) {
+        this.scoreGraphics = this.scoreGraphics.filter(item => item.id !== id);
         if (this.updateHandler) this.updateHandler(this);
     }
     stopGame () {
@@ -63,6 +81,7 @@ export default class CatchGame {
                 this.points += piece.type.value;
                 piece.redeemed = true;
                 this.checkGameStatus(piece);
+                this.addScoreGraphic(piece);
             }
             this.removePiece(piece.id);
         }
