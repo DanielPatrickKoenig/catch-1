@@ -1,0 +1,30 @@
+{
+    "cursorOffset": -12,
+    "baseSpawnTime": 300,
+    "spawnRange": 500,
+    "types" :[
+        {
+            "type": "a",
+            "value": 100
+        },
+        {
+            "type": "b",
+            "value": 50
+        },
+        {
+            "type": "c",
+            "value": 0,
+            "gameEvent": "gameOver"
+        }
+    ],
+    "catchable": {
+        "baseDuration": 2.5,
+        "durationRange": 1.5,
+        "startY": -10,
+        "endY": 110
+    },
+    "scoreGraphic": {
+        "duration": 0.5,
+        "endY": -10
+    }
+}

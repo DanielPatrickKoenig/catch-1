@@ -1,12 +1,13 @@
 import gsap, { Linear } from "gsap";
+import gameConfig from '../config/game.json';
 export default class ScoreGraphic {
     constructor({ catchable, updateHandler, completeHandler }) {
         this.id = `score-${catchable.id}`;
         this.x = catchable.x;
         this.y = catchable.y;
         this.type = catchable.type;
-        this.duration = .5;
-        this.endY = this.y - 10;
+        this.duration = gameConfig.scoreGraphic.duration;
+        this.endY = this.y + gameConfig.scoreGraphic.endY;
         this.updateHandler = updateHandler;
         this.completeHandler = completeHandler;
 

@@ -1,26 +1,13 @@
 import Catchable from "./Catchable";
 import ScoreGraphic from "./ScoreGraphic";
 import jstrig from "jstrig";
+import gameConfig from '../config/game.json';
 export default class CatchGame {
     constructor () {
         this.playing = false;
-        this.baseSpawnTime = 1000;
-        this.spawnRange = 2000;
-        this.types = [
-            {
-                type: 'a',
-                value: 1,
-            },
-            {
-                type: 'b',
-                value: -1,
-            },
-            {
-                type: 'c',
-                value: 0,
-                gameEvent: 'gameOver',
-            },
-        ];
+        this.baseSpawnTime = gameConfig.baseSpawnTime;
+        this.spawnRange = gameConfig.spawnRange;
+        this.types = gameConfig.types;
         this.pieces = [];
         this.updateHandler = null;
         this.gameOverHandler = null;
@@ -32,7 +19,7 @@ export default class CatchGame {
         const piece = new Catchable({
             type: this.types[Math.floor(Math.random() * this.types.length)],
             x: Math.random() * 100,
-            y: -10,
+            y: gameConfig.catchable.startY,
             updateHandler: (item) => {
                 this.checkForCollisions(item);
                 this.updateHandler(this);

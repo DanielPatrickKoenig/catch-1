@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import FallingObject from './FallingObject';
 import ScoreAnimation from './ScoreAnimation';
 import { processPointerEvent } from './utils';
+import gameConfig from './config/game.json';
 
 const Game = (props) => {
     const [heroPosition, setHeroPosition] = useState({
@@ -16,7 +17,7 @@ const Game = (props) => {
         const bounds = gameRef.current.getBoundingClientRect();
         setHeroPosition({
             x: ((point.x - bounds.left) / bounds.width) * 100,
-            y: ((point.y / bounds.height) * 100) - 12,
+            y: ((point.y / bounds.height) * 100) + gameConfig.cursorOffset,
         });
         props.game.setHeroPosition(heroPosition);
     }
@@ -39,8 +40,6 @@ const Game = (props) => {
             {props.game.pieces.map(item => (<FallingObject x={item.x} y={item.y} type={item.type.type}>{item.type.type}</FallingObject>))}
 
             {props.game.scoreGraphics.map(item => (<ScoreAnimation x={item.x} y={item.y} points={item.type.value} />))}
-
-            {props.game.scoreGraphics.map(item => (<p x={item.x} y={item.y} points={item.type.value}>{item.y}</p>))}
         </div>
     );
 };
